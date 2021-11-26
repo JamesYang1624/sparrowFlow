@@ -1,17 +1,11 @@
 package com.yangwz.common.base.viewmodel
 
 import android.app.Application
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.annotations.Since
-import com.xunai.common.http.BasicResponse
 import com.xunai.common.http.ResponseException
 import com.xunai.common.repository.ErrorResult
-import com.yangwz.common.base.MyApp
 import kotlinx.coroutines.*
-import java.util.*
 import java.util.concurrent.CancellationException
 
 
@@ -75,7 +69,7 @@ open class BaseViewModel(application: Application) : BaseLifeCycleViewModel() {
      * 处理异常
      */
     private fun handleError(e: Exception) {
-        Toast.makeText(MyApp.instance, e.message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(MyApp.instance, e.message, Toast.LENGTH_SHORT).show()
     }
 
     /**
