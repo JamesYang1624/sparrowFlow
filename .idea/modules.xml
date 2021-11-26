@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sparrowFlow.iml" filepath="$PROJECT_DIR$/.idea/modules/sparrowFlow.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/sparrowFlow.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/sparrowFlow.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/sparrowFlow.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/sparrowFlow.common.iml" />
     </modules>
   </component>
 </project>

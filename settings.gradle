@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "sparrowFlow"
 include ':app'
+include ':common'
