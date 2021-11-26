@@ -35,13 +35,13 @@ class CacheInterceptor : Interceptor {
         } catch (e: Exception) {
             requestInfo.url = "" + e.toString()
         }
-        val map: MutableMap<String, List<String>?> = HashMap()
+        val map: Map<String, List<String>?> = HashMap()
         try {
             val stringListMap = headers.toMultimap()
             requestInfo.headers = stringListMap
         } catch (e: Exception) {
-            map["no header"] = null
-            requestInfo.headers = map
+//            map["no header"] = null
+//            requestInfo.headers = map
         }
         if (request.body != null) {
             request.body!!.writeTo(requestBuffer)
