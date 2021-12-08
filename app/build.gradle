@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
+//    id 'com.github.dcendents.android-maven'
+//group='com.github.JamesYang1624'
 
 android {
     compileSdk 31

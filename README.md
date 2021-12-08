@@ -14,6 +14,6 @@ allprojects {
 2.  在app的build.gradle
 ```gradle
 dependencies {
-	        implementation 'com.github.JamesYang1624:sparrowFlow:Tag'
+	       implementation 'com.github.JamesYang1624:sparrowFlow:1.0.2'
 	}
 ```
