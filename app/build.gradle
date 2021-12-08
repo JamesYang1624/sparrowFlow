@@ -16,6 +16,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //目前已支持 "armeabi-v7a","arm64-v8a","x86","x86_64" 平台架构
+            abiFilters "armeabi-v7a","arm64-v8a","x86","x86_64"
+        }
     }
 
     buildTypes {
@@ -31,13 +35,39 @@ android {
     dataBinding {
         enabled = true
     }
-
+    buildFeatures {
+        compose true
+    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '11'
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        // Remove kotlinCompilerVersion from here
+//        kotlinCompilerVersion '1.5.21'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                Calendar calendar = Calendar.getInstance(Locale.CHINA)
+                def buildDate = String.format(Locale.CHINA, "%04d-%02d-%02d",
+                        calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH))
+                def versionName = defaultConfig.versionName
+                if (variant.buildType.name == 'release') {
+                    outputFileName = "sparrow-${buildDate}-${versionName}r${versionCode}.apk"
+                } else {
+                    outputFileName = "sparrow-${buildDate}_debug.apk"
+                }
+            }
     }
 }
 
@@ -46,6 +76,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
     implementation project(path: ':common')
 }

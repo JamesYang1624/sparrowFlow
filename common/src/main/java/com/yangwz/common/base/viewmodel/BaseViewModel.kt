@@ -17,7 +17,7 @@ typealias Cancel = suspend (e: Exception) -> Unit
  * @author : yangweizheng
  * @date : 2021/5/12 16:20
  */
-open class BaseViewModel(application: Application) : BaseLifeCycleViewModel() {
+open class BaseViewModel() : BaseLifeCycleViewModel() {
     private val tag = "BaseViewModel"
     val startRefresh = MutableLiveData<Boolean>()
     val startLoadMore = MutableLiveData<Boolean>()

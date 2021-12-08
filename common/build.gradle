@@ -16,6 +16,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        ndk {
+            //目前已支持 "armeabi-v7a","arm64-v8a","x86","x86_64" 平台架构
+            abiFilters "armeabi-v7a","arm64-v8a","x86","x86_64"
+        }
     }
 
     buildTypes {
@@ -30,18 +34,25 @@ android {
     kapt {
         generateStubs = true
     }
+    buildFeatures {
+        compose true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '11'
+        useIR = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'androidx.core:core-ktx:1.7.0'
+    api 'androidx.core:core-ktx:1.3.2'
     api 'androidx.appcompat:appcompat:1.3.1'
     api 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.13.2'
@@ -54,8 +65,8 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     api 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     //rxjava
-    implementation "io.reactivex.rxjava3:rxjava:3.1.3"
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    api "io.reactivex.rxjava3:rxjava:3.1.3"
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
     //lifecycle
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01'
     //kotlin
@@ -73,5 +84,44 @@ dependencies {
     api "com.gyf.immersionbar:immersionbar:3.0.0"
     api "com.gyf.immersionbar:immersionbar-components:3.0.0"
 
+    api 'com.blankj:utilcodex:1.30.6'
 
+    // Integration with activities
+    api 'androidx.activity:activity-compose:1.4.0'
+    // Compose Material Design
+    api 'androidx.compose.material:material:1.0.5'
+    // Animations
+    api 'androidx.compose.animation:animation:1.0.5'
+    // Tooling support (Previews, etc.)
+    api 'androidx.compose.ui:ui-tooling:1.0.5'
+    // Integration with ViewModels
+    api 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-rc01'
+
+    // When using a AppCompat theme
+    api "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
+
+    api "androidx.compose.ui:ui:$compose_version"
+    api "androidx.compose.material:material:$compose_version"
+    api "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    api 'androidx.activity:activity-compose:1.3.0'
+    api "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta01"
+    api "androidx.compose.material:material:$compose_version"
+    api "androidx.compose.ui:ui-tooling:$compose_version"
+    api 'io.coil-kt:coil-compose:1.4.0'
+
+    //easyphoto
+    api 'com.github.HuanTanSheng:EasyPhotos:3.1.3'
+    //极速版 (预计占用 4M 左右空间)，主要移除了一些不常用的编解码器
+    api 'com.github.microshow:RxFFmpeg:4.9.0-lite'
+
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    api 'com.github.getActivity:XXPermissions:12.6'
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
 }

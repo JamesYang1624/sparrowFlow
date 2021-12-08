@@ -4,16 +4,20 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
+import com.blankj.utilcode.util.ToastUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.xunai.common.repository.ErrorResult
+import com.yangwz.common.R
 import com.yangwz.common.base.viewmodel.BaseViewModel
 import com.yangwz.common.utils.AntiShake
 import com.yangwz.common.utils.DensityUtil
@@ -26,22 +30,23 @@ import kotlin.coroutines.CoroutineContext
 /**
  * @author ywz
  */
-abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), CoroutineScope {
+abstract class BaseActivity<VB : ViewDataBinding>(private val layout: (LayoutInflater) -> VB) : AppCompatActivity(), CoroutineScope {
     private lateinit var job: Job
+
     protected val TAG: String = BaseActivity::class.java.simpleName
-    lateinit var binding: VB
-    lateinit var vm: AndroidViewModel
-    abstract fun getTitleString(): String //设置标题
+//    lateinit var vm: AndroidViewModel
     protected val mAntiShake: AntiShake = AntiShake()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
+    protected var mProgressDialog: MyProgressDialog? = null
+    protected val binding by lazy { layout(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         initViewModel()
-        vm = getViewModel()
+//        vm = getViewModel()
 //        ARouter.getInstance().inject(this)
-        binding = DataBindingUtil.setContentView<VB>(this, getLayout())
         job = Job()
         //设置状态栏透明
         //设置状态栏透明
@@ -51,17 +56,17 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
         initData()
         try {
             //loading
-            (vm as BaseViewModel).isShowLoading.observe(this, Observer {
+//            (vm as BaseViewModel).isShowLoading.observe(this, Observer {
 //                if (it) showLoading() else dismissLoading()
-            })
-            //错误信息
-            (vm as BaseViewModel).errorData.observe(this, Observer {
-//                if (it.show) ToastUtil.showToast(it.errMsg)
-                errorResult(it)
-            })
+//            })
+//            //错误信息
+//            (vm as BaseViewModel).errorData.observe(this, Observer {
+//                if (it.show) ToastUtils.showShort(it.errMsg)
+//                errorResult(it)
+//            })
 //            (vm as BaseViewModel).emptyData.observe(this, Observer {
 //                if (it) {
-//                    showEmptyView(findViewById<EasyStateView>(R.id.esyStateView), "没有数据")
+////                    showEmptyView(findViewById<EasyStateView>(R.id.esyStateView), "没有数据")
 //                } else {
 //
 //                }
@@ -96,35 +101,35 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
         this.startActivity(intent)
     }
 
+//
+//    @LayoutRes
+//    protected abstract fun getLayout(): Int
 
-    @LayoutRes
-    protected abstract fun getLayout(): Int
-
-    protected abstract fun getViewModel(): AndroidViewModel
+//    protected abstract fun getViewModel(): AndroidViewModel
     protected abstract fun initViewModel()
     protected abstract fun initView()
     protected abstract fun initData()
     //44x33x73
 
-//    open fun showProgressDialog(isCancel: Boolean) {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = MyProgressDialog.getInstance(this).init()
-//        }
-//        mProgressDialog?.show(isCancel)
-//    }
-//
-//    open fun showProgressDialog(isCancel: Boolean, message: String?) {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = MyProgressDialog.getInstance(this).init()
-//        }
-//        mProgressDialog?.show(isCancel, message)
-//    }
-//
-//    open fun cancelProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
-//            mProgressDialog!!.dismiss()
-//        }
-//    }
+    open fun showProgressDialog(isCancel: Boolean) {
+        if (mProgressDialog == null) {
+            mProgressDialog = MyProgressDialog.getInstance(this).init()
+        }
+        mProgressDialog?.show(isCancel)
+    }
+
+    open fun showProgressDialog(isCancel: Boolean, message: String?) {
+        if (mProgressDialog == null) {
+            mProgressDialog = MyProgressDialog.getInstance(this).init()
+        }
+        mProgressDialog?.show(isCancel, message)
+    }
+
+    open fun cancelProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
+            mProgressDialog!!.dismiss()
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -136,34 +141,34 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity(), Corouti
      * 接口请求错误回调
      */
     open fun errorResult(errorResult: ErrorResult) {}
-//    fun showLoading() {
-//        if (mProgressDialog == null) {
-//            mProgressDialog = MyProgressDialog.getInstance(this).init()
-//        }
-//        mProgressDialog?.show()
-//    }
-//
-//    fun dismissLoading() {
-//        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
-//            mProgressDialog!!.dismiss()
-//        }
-//    }
+    fun showLoading() {
+        if (mProgressDialog == null) {
+            mProgressDialog = MyProgressDialog.getInstance(this).init()
+        }
+        mProgressDialog?.show()
+    }
+
+    fun dismissLoading() {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
+            mProgressDialog!!.dismiss()
+        }
+    }
 
     /**
      * 当前显示的状态不为空则显示空数据缺省页
      */
-//    protected open fun showEmptyView(
-//        easyStateView: EasyStateView,
-//        string: String?
-//    ) {
-//        if (easyStateView.currentState != EasyStateView.VIEW_EMPTY
-//        ) {
-//            val tvMsg: TextView = easyStateView.getStateView(EasyStateView.VIEW_EMPTY)
-//                .findViewById(R.id.tv_no_data_tips)
-//            tvMsg.text = string
-//            easyStateView.showViewState(EasyStateView.VIEW_EMPTY)
-//        }
-//    }
+    protected open fun showEmptyView(
+        easyStateView: EasyStateView,
+        string: String?
+    ) {
+        if (easyStateView.currentState != EasyStateView.VIEW_EMPTY
+        ) {
+            val tvMsg: TextView = easyStateView.getStateView(EasyStateView.VIEW_EMPTY)
+                .findViewById(R.id.tv_no_data_tips)
+            tvMsg.text = string
+            easyStateView.showViewState(EasyStateView.VIEW_EMPTY)
+        }
+    }
 
 
     /**
