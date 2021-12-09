@@ -17,6 +17,7 @@ dependencies {
 	     implementation 'com.github.JamesYang1624:sparrowFlow:1.0.2beta'
 	}
 
-	[![](https://jitpack.io/v/JamesYang1624/sparrowFlow.svg)](https://jitpack.io/#JamesYang1624/sparrowFlow)
+	
 
 ```
+[![](https://jitpack.io/v/JamesYang1624/sparrowFlow.svg)](https://jitpack.io/#JamesYang1624/sparrowFlow)
