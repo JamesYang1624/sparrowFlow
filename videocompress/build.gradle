@@ -1,13 +1,15 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.yangwz.videocompress"
+//        applicationId "com.yangwz.videocompress"
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -28,6 +30,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
+    }
+    kapt {
+        generateStubs = true
     }
 }
 
