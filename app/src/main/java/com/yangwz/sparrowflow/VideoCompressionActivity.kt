@@ -13,11 +13,11 @@ import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yangwz.common.base.BaseActivity
 import com.yangwz.common.ffmpege.FFmpegeInstruction
+import com.yangwz.common.utils.CardFileUtils
 import com.yangwz.common.utils.GlideEngine
-import com.yangwz.common.utils.SparrowFileUtils
+import com.yangwz.common.utils.SpFileUtils
 import com.yangwz.sparrowflow.databinding.ActivityVideoCompressionBinding
 import com.yangwz.viewmodel.VideoCompressionViewModel
-import io.microshow.rxffmpeg.RxFFmpegCommandList
 import java.util.ArrayList
 import io.microshow.rxffmpeg.RxFFmpegInvoke
 import io.microshow.rxffmpeg.RxFFmpegSubscriber
@@ -51,6 +51,31 @@ class VideoCompressionActivity :
         binding.progressBar.progress = 0
         binding.progress = "0%"
         binding.seekBar1.max = 100
+        val filesPath = CardFileUtils.getFilesPath(this)
+        val videoCompressPath = filesPath.plus("/videoCompress")
+        val rootPath = CardFileUtils.getRootPath(this)
+        val AcompressPath = rootPath.plus("/Acompress")
+        val Acompress = CardFileUtils.createDirByPath(AcompressPath)
+
+
+        val compressFilePath = AcompressPath.plus("/compressfile.txt")
+        val compressFile = CardFileUtils.createFileByPath(compressFilePath)
+        val createFilePath = CardFileUtils.createDirByPath(videoCompressPath)
+
+        LogUtils.iTag(
+            "VideoCompressionActivityFile",
+            "filesPath = $filesPath \n videoCompressPath = $videoCompressPath  \n createFilePath = $createFilePath \n" +
+                    " rootPath = $rootPath AcompressPath = $AcompressPath Acompress=$Acompress  compressFilePath = $compressFilePath compressFile = $compressFile"
+        )
+
+
+        val dirAtRoot = CardFileUtils.createDirAtRoot(this, "ATest1111")
+        val createFileByPath = CardFileUtils.createDirByPath(dirAtRoot)
+        LogUtils.iTag(
+            "VideoCompressionActivityRootFile",
+            "dirAtRoot = $dirAtRoot \n createFileByPath = $createFileByPath "
+        )
+        FileUtils.createOrExistsFile("")
         FileUtils.createOrExistsDir("/storage/emulated/0/atest")
         FileUtils.createOrExistsFile("/storage/emulated/0/atest/outPut.mp4")
         outPut = "/storage/emulated/0/atest/outPut.mp4"
@@ -94,7 +119,7 @@ class VideoCompressionActivity :
                                     .put(SpConstants.KEY_COMPRESS_OUT_VIDEO_PATH, outPut)
                                 playVideo = outPut
                                 binding.afterFileInfo = "压缩后   文件路径 ： $outPut 文件大小：${
-                                    SparrowFileUtils.getSizeAutoUnit(
+                                    SpFileUtils.getSizeAutoUnit(
                                         outPut
                                     )
                                 }"
@@ -104,7 +129,7 @@ class VideoCompressionActivity :
                             SPUtils.getInstance()
                                 .getString(SpConstants.KEY_SELECT_VIDEO_PATH)
                         } 文件大小：${
-                            SparrowFileUtils.getSizeAutoUnit(
+                            SpFileUtils.getSizeAutoUnit(
                                 SPUtils.getInstance()
                                     .getString(SpConstants.KEY_SELECT_VIDEO_PATH)
                             )
@@ -231,7 +256,7 @@ class VideoCompressionActivity :
                                         outPut
                                     )
                                     binding.afterFileInfo = "压缩后   文件路径 ： $outPut 文件大小：${
-                                        SparrowFileUtils.getSizeAutoUnit(outPut)
+                                        SpFileUtils.getSizeAutoUnit(outPut)
                                     }"
                                     playVideo = outPut
                                 } else {
@@ -241,7 +266,7 @@ class VideoCompressionActivity :
                                 }
                             }
                             binding.beforeFileInfo = "压缩前   文件路径 ： ${videoFile.path} 文件大小：${
-                                SparrowFileUtils.getSizeAutoUnit(videoFile.path)
+                                SpFileUtils.getSizeAutoUnit(videoFile.path)
                             }"
                             binding.afterFileInfo = ""
                             RxFFmpegInvoke.getInstance()
