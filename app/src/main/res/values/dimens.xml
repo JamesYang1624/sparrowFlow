@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pat_dimen_2">2dp</dimen>
+    <dimen name="pat_dimen_28">28dp</dimen>
+    <dimen name="dp2">2dp</dimen>
+    <dimen name="dp48">48dp</dimen>
+</resources>

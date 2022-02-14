@@ -1,4 +1,4 @@
-package com.yangwz.sparrowflow
+package com.yangwz.sparrowflow.app
 
 import android.app.Application
 import com.blankj.utilcode.util.AppUtils
@@ -22,7 +22,7 @@ class MyApp :Application() {
     }
 
     private fun initRxFF() {
-        RxFFmpegInvoke.getInstance().setDebug(BuildConfig.DEBUG)
+        RxFFmpegInvoke.getInstance().setDebug(true)
     }
 
     private fun initLog() {

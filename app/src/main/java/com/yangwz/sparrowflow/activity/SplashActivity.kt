@@ -1,18 +1,11 @@
-package com.yangwz.sparrowflow
+package com.yangwz.sparrowflow.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.databinding.ViewDataBinding
-import com.blankj.utilcode.util.ToastUtils
 import com.yangwz.common.base.BaseActivity
 import com.yangwz.sparrowflow.databinding.ActivitySplashBinding
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onEach
 
 
 /**

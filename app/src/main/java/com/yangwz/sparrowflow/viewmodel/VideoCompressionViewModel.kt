@@ -1,4 +1,4 @@
-package com.yangwz.viewmodel
+package com.yangwz.sparrowflow.viewmodel
 
 import android.view.View
 import com.blankj.utilcode.util.ToastUtils
@@ -16,6 +16,7 @@ class VideoCompressionViewModel : BaseViewModel() {
     val CLICK_ADDWATERMARK = 2
     val CLICK_ADDWATERPLAY = 3
     val CLICK_COMPRESS_PLAY = 4
+    val CLICK_DRAW_TEXT = 5
 
 
     fun onClick(view: View) {
@@ -37,6 +38,10 @@ class VideoCompressionViewModel : BaseViewModel() {
             }
             R.id.compress_play -> {
                 selectPhotoClick.invoke(CLICK_COMPRESS_PLAY)
+            }
+            R.id.addTextMark->{
+                selectPhotoClick.invoke(CLICK_DRAW_TEXT)
+
             }
         }
     }

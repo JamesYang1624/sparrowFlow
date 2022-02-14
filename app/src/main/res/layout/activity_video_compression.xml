@@ -74,6 +74,19 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextWidth"
             app:layout_constraintVertical_bias="0.025" />
 
+        <Button
+            android:id="@+id/addTextMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view)->viewModel.onClick(view)}"
+            android:text="加文字水印"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addWaterMark"
+            app:layout_constraintVertical_bias="0.025" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -148,8 +161,8 @@
         <TextView
             android:id="@+id/tvFileInfo"
             android:layout_width="0dp"
-            android:layout_marginHorizontal="@dimen/dimen_10"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_10"
             android:text="@{beforeFileInfo}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +206,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addWaterMark"
+            app:layout_constraintTop_toBottomOf="@+id/addTextMark"
             app:layout_constraintVertical_bias="0.009" />
 
 
