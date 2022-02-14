@@ -9,7 +9,7 @@ import kotlin.math.sign
  * @author : yangweizheng
  * @date : 2021/12/7 10:02
  */
-object SpFileUtils {
+object CommonFileUtils {
     /**
      *获取文件大小单位为B的double值
      */

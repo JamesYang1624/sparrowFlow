@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImage">
+        <attr name="ri_model" format="integer" />
+        <attr name="ri_radio" format="dimension" />
+        <attr name="ri_bgColor" format="color" />
+
+    </declare-styleable>
+
+</resources>

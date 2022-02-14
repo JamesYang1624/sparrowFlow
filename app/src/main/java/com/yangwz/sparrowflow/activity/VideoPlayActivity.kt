@@ -1,4 +1,4 @@
-package com.yangwz.sparrowflow
+package com.yangwz.sparrowflow.activity
 
 import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.LogUtils

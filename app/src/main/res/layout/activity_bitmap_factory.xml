@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#60000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <com.yangwz.sparrowflow.widgets.RoundImage
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+
+                android:scaleType="centerCrop"
+                android:src="@mipmap/fengmiantest"
+                app:ri_radio="18dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_10"
+                android:layout_weight="1"
+                android:text="彭于晏"
+                android:textColor="#ffffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/logo_xunai" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/ivContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp" />
+
+</LinearLayout>
