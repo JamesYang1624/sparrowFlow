@@ -14,8 +14,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.FragmentActivity
+import com.blankj.utilcode.util.LogUtils
 import com.yangwz.sparrowflow.R
 import com.yangwz.sparrowflow.cover.SelCoverTimeActivity
+import com.yangwz.sparrowflow.kotlinlearn.SimpleKotlinActivity
+import com.yangwz.sparrowflow.kotlinlearn.SimpleSuspendActivity
+import com.netease.nimlib.sdk.auth.LoginInfo
+import com.netease.nimlib.sdk.auth.AuthService
+
+import com.netease.nimlib.sdk.NIMClient
+
+import com.netease.nimlib.sdk.RequestCallback
+import com.yangwz.sparrowflow.app.ChatAccId
+import com.yangwz.sparrowflow.app.ChatAccId.NimAccId
+import com.yangwz.sparrowflow.app.ChatAccId.NimToken
 
 
 class MainActivity : AppCompatActivity() {
@@ -108,7 +121,74 @@ class MainActivity : AppCompatActivity() {
             ) {
                 Text("drawWaterMark")
             }
+            Button(
+                onClick = {
+                    val intent = Intent(this@MainActivity, SimpleKotlinActivity::class.java)
+                    startActivity(intent)
+                },
+                modifier = Modifier
+                    .padding(1.dp)
+            ) {
+                Text("SimpleKotlinActivity")
+            }
+            Button(
+                onClick = {
+                    val intent = Intent(this@MainActivity, SimpleSuspendActivity::class.java)
+                    startActivity(intent)
+                },
+                modifier = Modifier
+                    .padding(1.dp)
+            ) {
+                Text("SimpleSuspendActivity")
+            }
+
+            Button(
+                onClick = {
+                    val intent = Intent(this@MainActivity, NimChatActivity::class.java)
+                    startActivity(intent)
+                },
+                modifier = Modifier
+                    .padding(1.dp)
+            ) {
+                Text("云信")
+            }
         }
+
+        doLogin()
+
+    }
+
+    val TAG = "MainActivityTag"
+    private fun doLogin() {
+        val info = LoginInfo(NimAccId, NimToken)
+        val callback: RequestCallback<LoginInfo> = object : RequestCallback<LoginInfo> {
+            override fun onSuccess(param: LoginInfo?) {
+
+                LogUtils.json(" $TAG NimDebug login success", param)
+                // your code
+            }
+
+            override fun onFailed(code: Int) {
+                if (code == 302) {
+                    LogUtils.i(TAG, "NimDebug login onFailed $code 账号密码错误")
+                    // your code
+                } else {
+                    // your code
+                    LogUtils.i(TAG, "NimDebug login onFailed $code")
+                }
+            }
+
+            override fun onException(exception: Throwable) {
+                LogUtils.i(TAG, "NimDebug login onException ${exception.message}")
+                // your code
+            }
+        }
+
+        //执行手动登录
+
+        //执行手动登录
+        NIMClient.getService(AuthService::class.java).login(info).setCallback(callback)
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

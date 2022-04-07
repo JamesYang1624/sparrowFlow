@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.yangwz.viewmodel.VideoCompressionViewModel" />
+            type="com.yangwz.sparrowflow.viewmodel.VideoCompressionViewModel" />
 
         <variable
             name="input"

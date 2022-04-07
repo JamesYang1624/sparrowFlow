@@ -5,13 +5,18 @@
       <map>
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_bitmap_factory.xml" value="0.20260416666666667" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_choise_cover.xml" value="0.22916666666666666" />
+        <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_coroutine_dispatcher.xml" value="0.13177083333333334" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_main.xml" value="0.3380208333333333" />
+        <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_nim_chat.xml" value="0.12864583333333332" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_sel_cover_time.xml" value="0.3066123188405797" />
+        <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_simple_kotlin.xml" value="0.35260416666666666" />
+        <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_simple_suspend.xml" value="0.23541666666666666" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_splash.xml" value="0.1296875" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_text.xml" value="0.225" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_video_compression.xml" value="0.35260416666666666" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_video_play.xml" value="0.35260416666666666" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/activity_water_mark.xml" value="0.23125" />
+        <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/item_chat_list.xml" value="0.20989583333333334" />
         <entry key="..\:/github/sparrowFlow/app/src/main/res/layout/sel_cover_item.xml" value="0.3066123188405797" />
         <entry key="..\:/github/sparrowFlow/common/src/main/res/layout/layout_no_data.xml" value="0.1859375" />
         <entry key="..\:/github/sparrowFlow/common/src/main/res/layout/progress_dialog.xml" value="0.1859375" />

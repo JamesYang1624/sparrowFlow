@@ -78,4 +78,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(path: ':common')
     implementation project(path: ':videocompress')
+//    //云信
+//    // 基础功能 (必需)
+//    api 'com.netease.nimlib:basesdk:8.11.1'
+//    // 聊天室需要
+//    api 'com.netease.nimlib:chatroom:8.11.1'
 }
